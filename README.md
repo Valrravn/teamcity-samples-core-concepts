@@ -12,7 +12,7 @@ Main Project
 │   └── Sub-project Build Configuration
 │       └── Build Step (CLI)
 └── Build Configuration 1: Hello World
-        └── Build Step
+        └── Build Step (CLI)
 ```
 
 * A **build step** is the elemental block of any building routine. Encapsulates an action (or a series of actions) that cannot be executed partially.
