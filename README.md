@@ -49,3 +49,19 @@ This sample performs two steps:
 > Note: You cannot get the modified parameter value in the same step that sent the `##teamcity[setParameter]` message. For that reason, reporting the `output.string` parameter value is done as a separate step.
 
 Related help articles: [Build Parameters](https://www.jetbrains.com/help/teamcity/configuring-build-parameters.html) | [Custom parameters](https://www.jetbrains.com/help/teamcity/typed-parameters.html) | [setParameter Service Message](https://www.jetbrains.com/help/teamcity/service-messages.html#set-parameter) 
+
+
+## Sample 4 — Build Artifacts
+
+Artifacts files that are published by a build if it succeeds. Users can download these files from the **Artifacts** tab of the Build results page. Other TeamCity configurations can import these files via **artifact dependency** relations.
+
+You can publish any files on the agent machine, but normally artifacts are files produced during a build (.jar files, NuGet packages, Docker images, .dll libraries, logs, and so on).
+
+This sample creates three text files in the `<agent_working_directory>/bin/debug" folder. To specify which of them should be published as artifacts, check out the **Artifacts Paths** property of General build configuration settings.
+
+* The `bin/debug/ => results/` expression specifies that TeamCity should publish the entire contents of the `bin/debug` folder. All three files should be organized into a custom `results` directory.
+* The `-:bin/debug/ignored.txt` line excludes the one of the files.
+
+TeamCity reads artifact rules one by one, top-down. As a result, two of the three created files will be available on the **Artifacts** tab.
+
+Related help articles: [Build Artifacts](https://www.jetbrains.com/help/teamcity/build-artifact.html) | [Artifact Paths](https://www.jetbrains.com/help/teamcity/configuring-general-settings.html#Artifact+Paths) | [Custom Artifact Storage](https://www.jetbrains.com/help/teamcity/configuring-artifacts-storage.html)
