@@ -2,7 +2,7 @@
 A bunch of small samples demonstrating core TeamCity concepts
 
 * [Sample 1 — Basic TeamCity Objects](#sample-1--basic-teamcity-objects)
-* [Sample 2 — Build Configuration Teamplates](#sample-2--build-configuration-templates)
+* [Sample 2 — Build Configuration Templates](#sample-2--build-configuration-templates)
 * [Sample 3 — Input Parameters](#sample-3--input-parameters)
 * [Sample 4 — Build Artifacts](#sample-4--build-artifacts)
   
@@ -27,7 +27,7 @@ Main Project
 
 Related help articles: [Project Administrator Guide](https://www.jetbrains.com/help/teamcity/project-administrator-guide.html#Steps%2C+Configurations+and+Projects)
 
-## Sample 2 — Build Configuration Teamplates
+## Sample 2 — Build Configuration Templates
 
 Templates allow you to pre-set every new build configuration according to your requirements. In this sample:
 
