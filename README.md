@@ -1,12 +1,21 @@
 # TeamCity Samples: Core Concepts
-A bunch of small samples demonstrating core TeamCity concepts
 
+This repository includes bite-sized samples that demonstrate main TeamCity concepts.
+
+## Table of Contents
+
+
+* [How to Test These Samples](#how-to-test-these-samples)
 * [Sample 1 — Basic TeamCity Objects](#sample-1--basic-teamcity-objects)
 * [Sample 2 — Build Configuration Templates](#sample-2--build-configuration-templates)
 * [Sample 3 — Input Parameters](#sample-3--input-parameters)
 * [Sample 4 — Build Artifacts](#sample-4--build-artifacts)
 * [Sample 5 — Feature Branches and Branch Filters](#sample-5--feature-branches-and-branch-filters)
   
+
+## How to Test These Samples
+
+TBD
 
 
 ## Sample 1 — Basic TeamCity Objects
