@@ -91,4 +91,4 @@ In this sample, the "Main Root" uses the following branch specification, which a
 This root is used by two build configurations. The **Trunk** configuration does not make any modifications to the list of available branches, so all branches specified by the root are also available to this build configuration.
 
 
-![](~/media/branches-trunk-config.png)
+![](./media/branches-trunk-config.png)
