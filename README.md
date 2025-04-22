@@ -5,6 +5,7 @@ A bunch of small samples demonstrating core TeamCity concepts
 * [Sample 2 — Build Configuration Templates](#sample-2--build-configuration-templates)
 * [Sample 3 — Input Parameters](#sample-3--input-parameters)
 * [Sample 4 — Build Artifacts](#sample-4--build-artifacts)
+* [Sample 5 — Feature Branches and Branch Filters](#sample-5--feature-branches-and-branch-filters)
   
 
 
@@ -71,3 +72,10 @@ This sample creates three text files in the `<agent_working_directory>/bin/debug
 TeamCity reads artifact rules one by one, top-down. As a result, two of the three created files will be available on the **Artifacts** tab.
 
 Related help articles: [Build Artifacts](https://www.jetbrains.com/help/teamcity/build-artifact.html) | [Artifact Paths](https://www.jetbrains.com/help/teamcity/configuring-general-settings.html#Artifact+Paths) | [Custom Artifact Storage](https://www.jetbrains.com/help/teamcity/configuring-artifacts-storage.html)
+
+
+## Sample 5 — Feature Branches and Branch Filters
+
+> This sample uses anonymous connection to the [following GitHub repository](https://github.com/Valrravn/teamcity-multibranch-repo). If you modify VCS root connection and authorization settings, update branch specification and filter branches accordingly.
+
+
