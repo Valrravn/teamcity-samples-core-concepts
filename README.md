@@ -1,4 +1,4 @@
-# teamcity-samples-core-concepts
+# TeamCity Samples: Core Concepts
 A bunch of small samples demonstrating core TeamCity concepts
 
 
