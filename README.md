@@ -1,7 +1,7 @@
 # TeamCity Samples: Core Concepts
 A bunch of small samples demonstrating core TeamCity concepts
 
-[](#sample-1--basic-teamcity-objects)
+[Sample 1 — Basic TeamCity Objects](#sample-1--basic-teamcity-objects)
 
 
 ## Sample 1 — Basic TeamCity Objects
