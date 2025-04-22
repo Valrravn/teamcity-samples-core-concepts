@@ -107,3 +107,7 @@ This build configuration filters its branches as follows:
 Note that unlike branch specifications that require full branch names (`refs/heads/main`), branch filters require logical branch names (names displayed in TeamCity UI, for example `main` or `<default>`).
 
 ![](./media/branches-development-config.png)
+
+The asterisk (`*`) symbol is available in both branch specifications and branch filters, and acts as a wildcard for any sequence of characters.
+
+Related help articles: [Working with Feature Branches](https://www.jetbrains.com/help/teamcity/working-with-feature-branches.html) | [Branch Filter](https://www.jetbrains.com/help/teamcity/branch-filter.html)
