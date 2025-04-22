@@ -78,4 +78,17 @@ Related help articles: [Build Artifacts](https://www.jetbrains.com/help/teamcity
 
 > This sample uses anonymous connection to the [following GitHub repository](https://github.com/Valrravn/teamcity-multibranch-repo). If you modify VCS root connection and authorization settings, update branch specification and filter branches accordingly.
 
+All TeamCity entities — from build configurations to individual build features — rely on VCS roots to interact with version control systems. A VCS root defines which repository branches are available to the entities that use it. The set of rules determining which branches are monitored is called the **branch specification** and is configured in the root's general settings.
 
+In this sample, the "Main Root" uses the following branch specification, which allows tracking all branches except for `sandbox` and `test`:
+
+```
++:refs/heads/*
+-:refs/heads/sandbox
+-:refs/heads/test
+```
+
+This root is used by two build configurations. The **Trunk** configuration does not make any modifications to the list of available branches, so all branches specified by the root are also available to this build configuration.
+
+
+![](~/media/branches-trunk-config.png)
