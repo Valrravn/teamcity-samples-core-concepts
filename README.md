@@ -19,6 +19,8 @@ Main Project
 * A **build configuration** is a collection of sequentially executed steps. Each step can have its own run conditions, so you can control which steps to execute depending on required conditions.
 * A **project** is a home for build configurations and other sub-projects. Cannot perform any CI/CD routines and allows you to group/categorize builds on your server.
 
+Related help articles: [Project Administrator Guide](https://www.jetbrains.com/help/teamcity/project-administrator-guide.html#Steps%2C+Configurations+and+Projects)
+
 ## Sample 2 — Build Configuration Teamplates
 
 Templates allow you to pre-set every new build configuration according to your requirements. In this sample:
@@ -28,6 +30,10 @@ Templates allow you to pre-set every new build configuration according to your r
 * **Templated Build Configuration** — a configuration whose "based on template" property was set upon creation. Inherits all settings of a template, but adds one additional build step and overrides the default parameter value. This technique allows you to quickly "clone" a default build configuration, and then customize it as needed.
 
 You can stop synchronizing a cloned configuration with its parent parent template at any time. To do so, go to "Configuration settings | Quick Actions" and select "Detach from template...".
+
+A template can be designated as the default for a project, ensuring that all new configurations automatically follow its structure and settings.
+
+Related help articles: [Build Configuration Template](https://www.jetbrains.com/help/teamcity/build-configuration-template.html)
 
 ## Sample 3 — Input Parameters
 
@@ -41,3 +47,5 @@ This sample performs two steps:
 2. Prints the `output.string` parameter value to the build log.
 
 > Note: You cannot get the modified parameter value in the same step that sent the `##teamcity[setParameter]` message. For that reason, reporting the `output.string` parameter value is in a separate step.
+
+Related help articles: [Build Parameters](https://www.jetbrains.com/help/teamcity/configuring-build-parameters.html) | [Custom parameters](https://www.jetbrains.com/help/teamcity/typed-parameters.html) | [setParameter Service Message](https://www.jetbrains.com/help/teamcity/service-messages.html#set-parameter) 
