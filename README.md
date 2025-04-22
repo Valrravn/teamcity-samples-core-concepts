@@ -92,3 +92,18 @@ This root is used by two build configurations. The **Trunk** configuration does 
 
 
 ![](./media/branches-trunk-config.png)
+
+
+The **Development** configuration in turn specfies additional **branch filters**. These filters are applied on top of root branch specifications and allow you to additionally narrow down the list of available branches. These filters are available for many TeamCity entities that communicate with remote repositories: build configurations, triggers, commit status publishers, and so on.
+
+This build configuration filters its branches as follows:
+
+```
+-:*
++:<default>
++:dev-*
+```
+
+Note that unlike branch specifications that require full branch names (`refs/heads/main`), branch filters require logical branch names (names displayed in TeamCity UI, for example `main` or `<default>`).
+
+![](./media/branches-development-config.png)
