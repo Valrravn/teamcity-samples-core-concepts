@@ -1,7 +1,11 @@
 # TeamCity Samples: Core Concepts
 A bunch of small samples demonstrating core TeamCity concepts
 
-[Sample 1 — Basic TeamCity Objects](#sample-1--basic-teamcity-objects)
+* [Sample 1 — Basic TeamCity Objects](#sample-1--basic-teamcity-objects)
+* [Sample 2 — Build Configuration Teamplates](#sample-2--build-configuration-templates)
+* [Sample 3 — Input Parameters](#sample-3--input-parameters)
+* [Sample 4 — Build Artifacts](#sample-4--build-artifacts)
+  
 
 
 ## Sample 1 — Basic TeamCity Objects
