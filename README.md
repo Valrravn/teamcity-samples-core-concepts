@@ -202,3 +202,16 @@ fi
 > ```
 
 Related help articles: [Artifact Dependencies](https://www.jetbrains.com/help/teamcity/artifact-dependencies.html) | [Artifact Paths](https://www.jetbrains.com/help/teamcity/configuring-general-settings.html#Artifact+Paths)
+
+
+## Sample 7 — Snapshot Dependencies (Build Chains)
+
+```
+           Build All
+           /      \
+      Config F   Config E
+                    /    \
+               Config C  Config D
+               /      \
+         Config A   Config B
+```
