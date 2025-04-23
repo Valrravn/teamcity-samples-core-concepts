@@ -92,10 +92,15 @@ Artifacts files that are published by a build if it succeeds. Users can download
 
 You can publish any files on the agent machine, but normally artifacts are files produced during a build (.jar files, NuGet packages, Docker images, .dll libraries, logs, and so on).
 
-This sample creates three text files in the `<agent_working_directory>/bin/debug" folder. To specify which of them should be published as artifacts, check out the **Artifacts Paths** property of General build configuration settings.
+This sample creates three text files in the `<agent_working_directory>/bin/debug` folder. To specify which of them should be published as artifacts, check out the **Artifacts Paths** property of General build configuration settings.
 
-* The `bin/debug/ => results/` expression specifies that TeamCity should publish the entire contents of the `bin/debug` folder. All three files should be organized into a custom `results` directory.
-* The `-:bin/debug/ignored.txt` line excludes the one of the files.
+```
+bin/debug/ => results/
+-:bin/debug/ignored.txt
+```
+
+* The first expression specifies that TeamCity should publish the entire contents of the `bin/debug` folder. All three files should be organized into a custom `results` directory.
+* The second line excludes `ignored.txt` from the list of published artifacts.
 
 TeamCity reads artifact rules one by one, top-down. As a result, two of the three created files will be available on the **Artifacts** tab.
 
