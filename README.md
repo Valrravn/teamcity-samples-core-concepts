@@ -172,4 +172,10 @@ else
 fi
 ```
 
+> Comment out lines that generate `output.txt` in the **Producer** configuration to test how **Consumer** behaves when there is no file to import.
+> ```
+> #touch output.txt
+> #echo "File from Producer build configuration" > output.txt
+> ```
+
 Related help articles: [Artifact Dependencies](https://www.jetbrains.com/help/teamcity/artifact-dependencies.html) | [Artifact Paths](https://www.jetbrains.com/help/teamcity/configuring-general-settings.html#Artifact+Paths)
