@@ -11,6 +11,7 @@ This repository includes bite-sized samples that demonstrate main TeamCity conce
 * [Sample 3 — Input Parameters](#sample-3--input-parameters)
 * [Sample 4 — Build Artifacts](#sample-4--build-artifacts)
 * [Sample 5 — Feature Branches and Branch Filters](#sample-5--feature-branches-and-branch-filters)
+* [Sample 6 — Artifact Dependencies](#sample-6--artifact-dependencies)
   
 
 ## How to Test These Samples
@@ -120,3 +121,56 @@ Note that unlike branch specifications that require full branch names (`refs/hea
 The asterisk (`*`) symbol is available in both branch specifications and branch filters, and acts as a wildcard for any sequence of characters.
 
 Related help articles: [Working with Feature Branches](https://www.jetbrains.com/help/teamcity/working-with-feature-branches.html) | [Branch Filter](https://www.jetbrains.com/help/teamcity/branch-filter.html)
+
+## Sample 6 — Artifact Dependencies
+
+Artifact dependencies allow build configurations to import artifacts published by other configuration. In this sample, the **Producer** configuration publishes a ZIP archive with three files.
+
+```
+output.txt => archive.zip
+output2.txt => archive.zip
+output3.txt => archive.zip
+```
+
+The **Consumer** build configuration imports one file from that archive. The `?:` prefix specifies the optional dependency: if the configuration is unable to resolve it, the build will not fail. You can change the prefix to `+:` to specify a mandatory dependency.
+
+```
+dependencies {
+    artifacts(Producer) {
+        buildRule = lastSuccessful()
+        artifactRules = "?:archive.zip!/output.txt"
+    }
+}
+```
+
+The **Consumer** configuration sets its `env.imported` environment variable depending on whether or not the **Producer** artifact was imported.
+
+* If yes, the contents of the imported file are printed.
+* Otherwise, **Consumer** creates its own file and prints its contents instead.
+
+```
+# Step 1
+FILE_PATH="output.txt"
+
+if [ -f "$FILE_PATH" ]; then
+  echo "File 'output.txt' was imported from the 'Producer' configuration"
+  echo "##teamcity[setParameter name='env.imported' value='true']"
+else
+  echo "Failed to locate the 'output.txt' file; artifact dependency was not resolved"
+fi
+
+#Step 2
+if [ "$imported" = "true" ]; then
+  echo "The 'imported' environment variable is 'true'"
+  cat "output.txt"
+elif [ "$imported" = "false" ]; then
+  echo "The 'imported' environment variable is 'false'"
+  touch output_consumer.txt
+  echo "File from Consumer build configuration" > output_consumer.txt
+  cat "output_consumer.txt"
+else
+  echo "Environment variable 'imported' is not set or has an unexpected value."
+fi
+```
+
+Related help articles: [Artifact Dependencies](https://www.jetbrains.com/help/teamcity/artifact-dependencies.html) | [Artifact Paths](https://www.jetbrains.com/help/teamcity/configuring-general-settings.html#Artifact+Paths)
