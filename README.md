@@ -145,11 +145,7 @@ dependencies {
 
 The **Consumer** configuration sets its `env.imported` environment variable depending on whether or not the **Producer** artifact was imported.
 
-* If yes, the contents of the imported file are printed.
-* Otherwise, **Consumer** creates its own file and prints its contents instead.
-
 ```
-# Step 1
 FILE_PATH="output.txt"
 
 if [ -f "$FILE_PATH" ]; then
@@ -158,8 +154,11 @@ if [ -f "$FILE_PATH" ]; then
 else
   echo "Failed to locate the 'output.txt' file; artifact dependency was not resolved"
 fi
+```
 
-#Step 2
+If the file was imported, its contents are printed to the build log. Otherwise, **Consumer** creates its own file and prints its contents instead.
+
+```
 if [ "$imported" = "true" ]; then
   echo "The 'imported' environment variable is 'true'"
   cat "output.txt"
