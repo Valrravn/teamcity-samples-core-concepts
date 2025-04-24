@@ -255,7 +255,7 @@ The following sample sets up the following build chain:
   }
   ```
 
-  You can configure how TeamCity handles failed upstream builds. By default, it runs downstream builds but marks them with a build problem. For example, if Config D fails, the entire "D → E → Build All" chain appears as failed. In this example, the "D → E" dependency is customized: Config E does not inherit the failure from Config D, so its status is based solely on its own build results.
+  You can configure how TeamCity handles failed upstream builds. By default, it runs downstream builds but marks them with a build problem. Since Config D always fails, the entire "D → E → Build All" chain appears as failed. In this example, the "D → E" dependency is customized: Config E does not inherit the failure from Config D, so its status is based solely on its own build results.
 
   ```
   dependencies {
