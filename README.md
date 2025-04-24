@@ -12,7 +12,7 @@ This repository includes bite-sized samples that demonstrate main TeamCity conce
 * [Sample 4 — Build Artifacts](#sample-4--build-artifacts)
 * [Sample 5 — Feature Branches and Branch Filters](#sample-5--feature-branches-and-branch-filters)
 * [Sample 6 — Artifact Dependencies](#sample-6--artifact-dependencies)
-* [Sample 7 — Snapshot Dependencies (Build Chains)](#sample-7--snapshot-dependencies-(build-chains))
+* [Sample 7 — Snapshot Dependencies (Build Chains)](#sample-7--snapshot-dependencies-build-chains)
   
 
 ## How to Test These Samples
