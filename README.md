@@ -224,7 +224,7 @@ The following sample sets up the following build chain:
 * **Config B** — a dummy configuration running in parallel with Config A.
 * **Config C** — waits configurations A and B to finish before it can run. Since this sample is not linked to any remote repository, TeamCity detects no new pending changes on new change runs.
   
-  TeamCity allows dependent configurations to reuse previous builds of upstream configurations if there were no configuration changes and no new commits were made to a remote repository. This default dependency setting is applied to the A &rarr; C link. In addition, Config C employs an artifact dependency to import file produced by Config A.
+  TeamCity allows dependent configurations to reuse previous builds of upstream configurations if there were no configuration changes and no new commits were made to a remote repository. This default dependency setting is applied to the "A &rarr; C" link. In addition, Config C employs an artifact dependency to import file produced by Config A.
   
   ```
    dependency(ConfigA) {
@@ -242,3 +242,46 @@ The following sample sets up the following build chain:
     reuseBuilds = ReuseBuilds.ANY
   }
   ```
+
+* **Config D** — always fails due to unknown command executed by its CLI build step. This configuration runs in parallel with Config C.
+* **Config E** — depends on configurations C and D. Unlike configuration C, does not reuse previous upstream builds. This means both "C" and "D" must run anew each time a chain starts.
+  
+  ```
+  dependencies {
+    snapshot(ConfigC) {
+      reuseBuilds = ReuseBuilds.NO
+    }
+  }
+  ```
+
+  You can configure how TeamCity handles failed upstream builds. By default, it runs downstream builds but marks them with a build problem. For example, if Config D fails, the entire "D → E → Build All" chain appears as failed. In this example, the "D → E" dependency is customized: Config E does not inherit the failure from Config D, so its status is based solely on its own build results.
+
+  ```
+  dependencies {
+    snapshot(ConfigD) {
+      reuseBuilds = ReuseBuilds.NO
+      onDependencyFailure = FailureAction.IGNORE
+      onDependencyCancel = FailureAction.ADD_PROBLEM
+    }
+  }
+  ```
+
+* **Config F** — a dummy configuration. Since it has no upstream configurations, runs in parallel with A and B builds.
+* **Build All** — a composite build configuration. Composite configurations cannot peform any building actions. Instead, they aggregate the results of the entire chain: display the combined execution time, the total number of successful/failed/canceled builds, artifacts produced by upstream configurations (via artifact dependencies), and so on.
+
+  ```
+  object BuildAll : BuildType({
+    name = "Build All"
+    type = BuildTypeSettings.Type.COMPOSITE
+    dependencies {
+      snapshot(ConfigE) {}
+      snapshot(ConfigF) {}
+      artifacts(ConfigC) {
+        cleanDestination = true
+        artifactRules = "file.txt"
+      }
+    }
+  })
+  ```
+
+Related help articles: [Build Chain](https://www.jetbrains.com/help/teamcity/build-chain.html) | [Snapshot Dependencies](https://www.jetbrains.com/help/teamcity/snapshot-dependencies.html) | [Composite Build Configurations](https://www.jetbrains.com/help/teamcity/composite-build-configuration.html)
