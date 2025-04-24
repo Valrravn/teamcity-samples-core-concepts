@@ -206,6 +206,10 @@ Related help articles: [Artifact Dependencies](https://www.jetbrains.com/help/te
 
 ## Sample 7 — Snapshot Dependencies (Build Chains)
 
+TeamCity snapshot dependencies allow you to link configurations in a single build chain. Configurations can belong to the same TeamCity project or different ones. If a configuration "Build" that depends on configuration "Test", "Test" can run independently without triggering "Build". Running "Build" however (downstream) requires a finished "Test" build (upstream).
+
+The following sample sets up the following build chain:
+
 ```
            Build All
            /      \
@@ -215,3 +219,26 @@ Related help articles: [Artifact Dependencies](https://www.jetbrains.com/help/te
                /      \
          Config A   Config B
 ```
+
+* **Config A** — generates the `file.txt` file and publishes it as an artifact. Cleans its checkout directory before starting a build, ensuring no leftover files persist through the builds.
+* **Config B** — a dummy configuration running in parallel with Config A.
+* **Config C** — waits configurations A and B to finish before it can run. Since this sample is not linked to any remote repository, TeamCity detects no new pending changes on new change runs.
+  
+  TeamCity allows dependent configurations to reuse previous builds of upstream configurations if there were no configuration changes and no new commits were made to a remote repository. This default dependency setting is applied to the A &rarr; C link. In addition, Config C employs an artifact dependency to import file produced by Config A.
+  
+  ```
+   dependency(ConfigA) {
+     snapshot {}
+     artifacts {
+       artifactRules = "file.txt"
+     }
+   }
+  ```
+
+  A snapshot dependency to configuration B is different: it allows Config C to reuse any existing B builds, not only successful ones.
+
+  ```
+  snapshot(ConfigB) {
+    reuseBuilds = ReuseBuilds.ANY
+  }
+  ```
